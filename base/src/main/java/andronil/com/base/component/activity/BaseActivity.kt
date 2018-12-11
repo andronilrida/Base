@@ -1,23 +1,14 @@
 package andronil.com.base.component.activity
 
-import android.content.Context
-import android.os.Bundle
+import android.databinding.DataBindingUtil
+import android.databinding.ViewDataBinding
+import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
-import andronil.com.base.function.ComponentFun
 
-abstract class BaseActivity: AppCompatActivity(),ComponentFun{
+abstract class BaseActivity: AppCompatActivity(){
 
-    override var componentContext: Context? = this
-    override val logTag: String = this.javaClass.simpleName
-
-    override fun appendLog(data: String) {
-
+    fun <T: ViewDataBinding> giveDataBindingClass(@LayoutRes layoutId:Int): T {
+        return DataBindingUtil.setContentView(this,layoutId)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        onCreate()
-            }
-
-    abstract fun onCreate()
 }
